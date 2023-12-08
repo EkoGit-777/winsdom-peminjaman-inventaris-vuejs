@@ -1,9 +1,9 @@
 <script setup>
 import DashboardMenuIcon from '../icons/DashboardMenuIcon.vue';
-import HistoryMenuIcon from './icons/HistoryMenuIcon.vue';
-import InventoryMenuIcon from './icons/InventoryMenuIcon.vue';
-import PeminjamanMenuIcon from './icons/PeminjamanMenuIcon.vue';
-import UsersMenuIcon from './icons/UsersMenuIcon.vue';
+import HistoryMenuIcon from '../icons/HistoryMenuIcon.vue';
+import InventoryMenuIcon from '../icons/InventoryMenuIcon.vue';
+import PeminjamanMenuIcon from '../icons/PeminjamanMenuIcon.vue';
+import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
 </script>
 
 <template>
@@ -28,12 +28,6 @@ import UsersMenuIcon from './icons/UsersMenuIcon.vue';
                     <a class="nav-link" href="/Admin/menuHistory.html">
                         <HistoryMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">History</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuUsers.html">
-                        <UsersMenuIcon/>
-                        <span class="ml-2 text-white font-weight-bold h5">Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
