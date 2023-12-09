@@ -6,20 +6,20 @@ import Navbar from '@/components/Navbar.vue';
 </script>
 
 <template>
+    
+    <Navbar />
 
-  <Navbar />
+    <div class="container-fluid">
+        <div class="row">
 
-  <div class="container-fluid">
-    <div class="row">
+            <SidebarAdmin />
 
-      <SidebarAdmin />
-      
-      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-2 pb-4">
-        <div class="row pt-2 ">
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-2 pb-4">
+                <div class="row pt-2 ">
 
-          <HeaderBar />
+                    <HeaderBar />
 
-          <div class="mb-4 mb-lg-0">
+                    <div class="mb-4 mb-lg-0">
                         <h3 class="mb-3" style="color: #1284ED; font-weight: bold;">Halo, Sandi Prayogo</h3>
                         <div class="card"
                             style="background-color: #FAF3F3; box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);">
@@ -63,7 +63,8 @@ import Navbar from '@/components/Navbar.vue';
                                                             d="M3.19653 47.9489C3.19653 48.7967 3.53332 49.6098 4.13279 50.2092C4.73227 50.8087 5.54534 51.1455 6.39313 51.1455H51.1454C51.9932 51.1455 52.8063 50.8087 53.4058 50.2092C54.0053 49.6098 54.342 48.7967 54.342 47.9489V38.3591H3.19653V47.9489ZM15.9829 43.154H38.3591V46.3506H15.9829V43.154ZM9.58972 43.154H12.7863V46.3506H9.58972V43.154Z"
                                                             fill="black" />
                                                     </svg></span>
-                                                </p> 
+                                                </p>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -106,11 +107,11 @@ import Navbar from '@/components/Navbar.vue';
                             
                         </div>
                     </div>
-        </div>
-      </main>
+                </div>
+            </main>
 
-      <FooterSection />
-      
+            <FooterSection />
+
+        </div>
     </div>
-  </div>
 </template>

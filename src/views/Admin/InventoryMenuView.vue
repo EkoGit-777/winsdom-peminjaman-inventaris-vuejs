@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar.vue';
 </script>
 
 <template>
+    
     <Navbar />
 
     <div class="container-fluid">
@@ -27,8 +28,7 @@ import Navbar from '@/components/Navbar.vue';
                                         <h1 class="h2">Inventory</h1>
                                     </div>
                                     <div class="col-md-6 d-flex justify-content-md-end justify-content-center">
-                                        <a href="/Admin/formTambahInventory.html"
-                                            class="btn btn-primary rounded-pill font-weight-semibold"
+                                        <a href="/Admin/formTambahInventory.html" class="btn btn-primary rounded-pill font-weight-semibold"
                                             style="height: 40px;">Tambah Inventory</a>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@ import Navbar from '@/components/Navbar.vue';
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table text-center">
-                                        <thead>
+                                        <thead >
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">ID Inventory</th>
@@ -79,7 +79,7 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td>Bor</td>
                                                 <td>Barang</td>
                                                 <td>Jl. Bogor No.12</td>
-                                                <td>Hadapi tugas bor Anda dengan kehanda...</td>
+                                                <td>Laki-Hadapi tugas bor Anda dengan kehanda...</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <span class="mr-1">Disewa</span>
@@ -94,21 +94,19 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href="detailInventory.html" class="text-decoration-none mr-3">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20"
-                                                                viewBox="0 0 28 20" fill="none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
                                                                 <path
                                                                     d="M14.2917 0C5.8584 0 0.858398 10 0.858398 10C0.858398 10 5.8584 20 14.2917 20C22.5251 20 27.5251 10 27.5251 10C27.5251 10 22.5251 0 14.2917 0ZM14.1917 3.33333C17.8917 3.33333 20.8584 6.33333 20.8584 10C20.8584 13.7 17.8917 16.6667 14.1917 16.6667C10.5251 16.6667 7.52506 13.7 7.52506 10C7.52506 6.33333 10.5251 3.33333 14.1917 3.33333ZM14.1917 6.66667C12.3584 6.66667 10.8584 8.16667 10.8584 10C10.8584 11.8333 12.3584 13.3333 14.1917 13.3333C16.0251 13.3333 17.5251 11.8333 17.5251 10C17.5251 9.66667 17.3917 9.36667 17.3251 9.06667C17.0584 9.6 16.5251 10 15.8584 10C14.9251 10 14.1917 9.26667 14.1917 8.33333C14.1917 7.66667 14.5917 7.13333 15.1251 6.86667C14.8251 6.76667 14.5251 6.66667 14.1917 6.66667Z"
                                                                     fill="black" />
                                                             </svg>
                                                         </a>
-                                                        <a href="/Admin/formTambahInventory.html"
-                                                            class="text-decoration-none mr-2">
+                                                        <a href="/Admin/formTambahInventory.html" class="text-decoration-none mr-2">
                                                             <svg width="25" height="25" viewBox="0 0 21 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path
                                                                     d="M9.66758 2.7929H4.41758C2.67788 2.7929 1.26758 4.13605 1.26758 5.7929V15.793C1.26758 17.4498 2.67788 18.793 4.41758 18.793H14.9176C16.6573 18.793 18.0676 17.4498 18.0676 15.793L18.0676 10.7929M6.51758 13.7929L10.3378 13.0598C10.5406 13.0209 10.7268 12.9258 10.8731 12.7864L19.425 4.63722C19.8351 4.24651 19.8348 3.61318 19.4244 3.2228L17.6128 1.4994C17.2026 1.10918 16.538 1.10945 16.1281 1.5L7.57524 9.65004C7.42928 9.78913 7.32962 9.96611 7.28872 10.1589L6.51758 13.7929Z"
-                                                                    stroke="#C0A103" stroke-width="2" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
+                                                                    stroke="#C0A103" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
                                                         </a>
                                                         <a href="#" class="text-decoration-none ml-2">
@@ -144,8 +142,7 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href="detailInventory.html" class="text-decoration-none mr-3">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20"
-                                                                viewBox="0 0 28 20" fill="none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20" fill="none">
                                                                 <path
                                                                     d="M14.2917 0C5.8584 0 0.858398 10 0.858398 10C0.858398 10 5.8584 20 14.2917 20C22.5251 20 27.5251 10 27.5251 10C27.5251 10 22.5251 0 14.2917 0ZM14.1917 3.33333C17.8917 3.33333 20.8584 6.33333 20.8584 10C20.8584 13.7 17.8917 16.6667 14.1917 16.6667C10.5251 16.6667 7.52506 13.7 7.52506 10C7.52506 6.33333 10.5251 3.33333 14.1917 3.33333ZM14.1917 6.66667C12.3584 6.66667 10.8584 8.16667 10.8584 10C10.8584 11.8333 12.3584 13.3333 14.1917 13.3333C16.0251 13.3333 17.5251 11.8333 17.5251 10C17.5251 9.66667 17.3917 9.36667 17.3251 9.06667C17.0584 9.6 16.5251 10 15.8584 10C14.9251 10 14.1917 9.26667 14.1917 8.33333C14.1917 7.66667 14.5917 7.13333 15.1251 6.86667C14.8251 6.76667 14.5251 6.66667 14.1917 6.66667Z"
                                                                     fill="black" />
@@ -156,8 +153,8 @@ import Navbar from '@/components/Navbar.vue';
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path
                                                                     d="M9.66758 2.7929H4.41758C2.67788 2.7929 1.26758 4.13605 1.26758 5.7929V15.793C1.26758 17.4498 2.67788 18.793 4.41758 18.793H14.9176C16.6573 18.793 18.0676 17.4498 18.0676 15.793L18.0676 10.7929M6.51758 13.7929L10.3378 13.0598C10.5406 13.0209 10.7268 12.9258 10.8731 12.7864L19.425 4.63722C19.8351 4.24651 19.8348 3.61318 19.4244 3.2228L17.6128 1.4994C17.2026 1.10918 16.538 1.10945 16.1281 1.5L7.57524 9.65004C7.42928 9.78913 7.32962 9.96611 7.28872 10.1589L6.51758 13.7929Z"
-                                                                    stroke="#C0A103" stroke-width="2" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
+                                                                    stroke="#C0A103" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
                                                         </a>
                                                         <a href="#" class="text-decoration-none ml-2">
