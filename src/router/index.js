@@ -26,6 +26,16 @@ const router = createRouter({
       component: () => import('../views/Admin/UsersMenuView.vue')
     },
     {
+      path: '/admin/users/tambahuser',
+      name: 'tambahUserAdmin',
+      component: () => import('../views/Admin/FormTambahUserView.vue')
+    },
+    {
+      path: '/admin/users/edituser',
+      name: 'editUserAdmin',
+      component: () => import('../views/Admin/FormEditUserView.vue')
+    },
+    {
       path: '/admin/history',
       name: 'historyAdmin',
       component: () => import('../views/Admin/HistoryMenuView.vue')
@@ -34,6 +44,16 @@ const router = createRouter({
       path: '/admin/inventory',
       name: 'inventoryAdmin',
       component: () => import('../views/Admin/InventoryMenuView.vue')
+    },
+    {
+      path: '/admin/inventory/tambahinventory',
+      name: 'tambahInventoryAdmin',
+      component: () => import('../views/Admin/FormTambahInventoryView.vue')
+    },
+    {
+      path: '/admin/inventory/editinventory',
+      name: 'editInventoryAdmin',
+      component: () => import('../views/Admin/FormEditInventoryView.vue')
     },
     {
       path: '/admin/peminjaman',

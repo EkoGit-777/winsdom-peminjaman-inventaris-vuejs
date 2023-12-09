@@ -27,9 +27,9 @@ import Navbar from '@/components/Navbar.vue';
                                         <h1 class="h2">Users</h1>
                                     </div>
                                     <div class="col-md-6 d-flex justify-content-md-end justify-content-center">
-                                        <a href="formTambahUser.html"
+                                        <RouterLink to="/admin/users/tambahuser"
                                             class="btn btn-primary rounded-pill font-weight-semibold"
-                                            style="height: 40px;">Tambah User</a>
+                                            style="height: 40px;">Tambah User</RouterLink>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -84,7 +84,7 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td>Employee</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="/Admin/formEditUser.html"
+                                                        <RouterLink to="/admin/users/edituser"
                                                             class="text-decoration-none mr-2">
                                                             <svg width="25" height="25" viewBox="0 0 21 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +93,7 @@ import Navbar from '@/components/Navbar.vue';
                                                                     stroke="#C0A103" stroke-width="2" stroke-linecap="round"
                                                                     stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </RouterLink>
                                                         <a href="#" class="text-decoration-none ml-2">
                                                             <svg width="25" height="25" viewBox="0 0 21 19" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
