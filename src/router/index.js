@@ -13,11 +13,17 @@ const router = createRouter({
       name: 'registration',
       component: () => import('../views/RegistrationView.vue')    
     },
+
     //Router Untuk Admin
     {
       path: '/Admin/',
       name: 'homeAdmin',
       component: () => import('../views/Admin/HomeView.vue')
+    },
+    {
+      path: '/Admin/Users',
+      name: 'usersAdmin',
+      component: () => import('../views/Admin/UsersMenuView.vue')
     },
 
     //Router Untuk User
