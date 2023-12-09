@@ -16,14 +16,29 @@ const router = createRouter({
 
     //Router Untuk Admin
     {
-      path: '/Admin/',
+      path: '/admin/',
       name: 'homeAdmin',
       component: () => import('../views/Admin/HomeView.vue')
     },
     {
-      path: '/Admin/Users',
+      path: '/admin/users',
       name: 'usersAdmin',
       component: () => import('../views/Admin/UsersMenuView.vue')
+    },
+    {
+      path: '/admin/history',
+      name: 'historyAdmin',
+      component: () => import('../views/Admin/HistoryMenuView.vue')
+    },
+    {
+      path: '/admin/inventory',
+      name: 'inventoryAdmin',
+      component: () => import('../views/Admin/InventoryMenuView.vue')
+    },
+    {
+      path: '/admin/peminjaman',
+      name: 'peminjamanAdmin',
+      component: () => import('../views/Admin/PeminjamanMenuView.vue')
     },
 
     //Router Untuk User

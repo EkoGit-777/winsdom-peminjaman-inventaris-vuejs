@@ -10,7 +10,9 @@ import Navbar from '@/components/Navbar.vue';
 
     <div class="container-fluid">
         <div class="row">
+
             <SidebarAdmin />
+
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-2 pb-4">
                 <div class="row pt-2 ">
 
@@ -406,4 +408,5 @@ import Navbar from '@/components/Navbar.vue';
             <FooterSection />
 
         </div>
-    </div></template>
+    </div>
+</template>

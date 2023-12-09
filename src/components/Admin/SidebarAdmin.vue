@@ -10,43 +10,43 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
     <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="background-color: #1284ED;">
         <div class="position-sticky">
             <div class="d-none d-md-block">
-                <a class="d-flex justify-content-center mt-3 mb-4" href="#">
+                <RouterLink to="/admin" class="d-flex justify-content-center mt-3 mb-4" href="#">
                     <div class="bg-light rounded-circle p-2" style="width: 150px; height: 150px;">
                         <img src="@/assets/images/logo-winsdom.png" alt="logo" class="mx-auto d-block"
                             style="width: auto; height: 130px;">
                     </div>
-                </a>
+                </RouterLink>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/Admin/menuHome.html">
+                    <RouterLink to="/admin" class="nav-link" aria-current="page">
                         <DashboardMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Dashboard</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Admin/menuHistory.html">
+                    <RouterLink to="/admin/history" class="nav-link">
                         <HistoryMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">History</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuUsers.html">
+                    <RouterLink to="/admin/users" class="nav-link">
                         <UsersMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Users</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuPeminjaman.html">
+                    <RouterLink to="/admin/peminjaman" class="nav-link">
                         <PeminjamanMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Peminjaman</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuInventory.html">
+                    <RouterLink to="/admin/inventory" class="nav-link">
                         <InventoryMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Inventory</span>
-                    </a>
+                    </RouterLink>
                 </li>
             </ul>
         </div>
