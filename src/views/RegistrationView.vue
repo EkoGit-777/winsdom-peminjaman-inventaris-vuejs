@@ -32,8 +32,8 @@ import { RouterLink } from 'vue-router';
                 <div class="mb-3">
                     <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                         <option selected style="background-color: white;" value="">Pilih Jenis Kelamin</option>
-                        <option value="laki-laki" style="background-color: white;">Laki-Laki</option>
-                        <option value="perempuan" style="background-color: white;">Perempuan</option>
+                        <option value="pria" style="background-color: white;">pria</option>
+                        <option value="wanita" style="background-color: white;">wanita</option>
                     </select>
                 </div>
                 <div class="mb-3">

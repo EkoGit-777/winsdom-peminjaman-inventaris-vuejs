@@ -46,15 +46,15 @@ import Navbar from '@/components/Navbar.vue';
                                     <div class="mb-3">
                                         <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Jenis Kelamin</option>
-                                            <option value="laki-laki" style="background-color: white;">Laki-Laki</option>
-                                            <option value="perempuan" style="background-color: white;">Perempuan</option>
+                                            <option value="pria" style="background-color: white;">pria</option>
+                                            <option value="wanita" style="background-color: white;">wanita</option>
                                         </select>
                                     </div>
                                     <div class="mb-4">
                                         <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Role</option>
-                                            <option value="laki-laki" style="background-color: white;">Employee</option>
-                                            <option value="perempuan" style="background-color: white;">Admin</option>
+                                            <option value="pria" style="background-color: white;">Employee</option>
+                                            <option value="wanita" style="background-color: white;">Admin</option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-md-end justify-content-center">

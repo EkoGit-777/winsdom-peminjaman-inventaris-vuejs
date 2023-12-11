@@ -34,9 +34,9 @@ import Navbar from '@/components/Navbar.vue';
                                     <div class="mb-3">
                                         <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Kategori</option>
-                                            <option value="laki-laki" style="background-color: white;">Barang</option>
-                                            <option value="perempuan" style="background-color: white;">Ruangan</option>
-                                            <option value="perempuan" style="background-color: white;">Kendaraan</option>
+                                            <option value="pria" style="background-color: white;">Barang</option>
+                                            <option value="wanita" style="background-color: white;">Ruangan</option>
+                                            <option value="wanita" style="background-color: white;">Kendaraan</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -50,8 +50,8 @@ import Navbar from '@/components/Navbar.vue';
                                     <div class="mb-4">
                                         <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Status Ketersediaan</option>
-                                            <option value="laki-laki" style="background-color: white;">Tersedia</option>
-                                            <option value="perempuan" style="background-color: white;">Disewa</option>
+                                            <option value="pria" style="background-color: white;">Tersedia</option>
+                                            <option value="wanita" style="background-color: white;">Disewa</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

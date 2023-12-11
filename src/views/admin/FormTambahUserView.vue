@@ -3,10 +3,40 @@ import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
+import axios from 'axios'
+import { ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+
+const router = useRouter()
+const employee = ref({
+    nama: '',
+    alamat: '',
+    no_hp: '',
+    jenis_kelamin: '',
+    umur: null,
+})
+
+async function addEmployee() {
+    try {
+        const response = await axios.post(
+            'http://localhost:3000/users/employees',{
+                nama: employee.value.nama,
+                alamat: employee.value.alamat,
+                no_hp: employee.value.no_hp,
+                jenis_kelamin: employee.value.jenis_kelamin,
+                umur: employee.value.umur,
+            }
+        )
+        console.log(response.data)
+        router.push({ name: 'usersAdmin' })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 </script>
 
 <template>
-    
     <Navbar />
 
     <div class="container-fluid">
@@ -20,48 +50,57 @@ import Navbar from '@/components/Navbar.vue';
                     <HeaderBar />
 
                     <div class="mb-4 mb-lg-0 d-flex justify-content-center align-content-center">
-                        <div class="card border-0"
-                            style="background-color: #00000000;">
+                        <div class="card border-0" style="background-color: #00000000;">
                             <div class="card-body w-700px">
                                 <div class="mb-3">
                                     <h1 class="text-center font-weight-bold">TAMBAH USER</h1>
                                 </div>
                                 <form>
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <input type="text" class="form-control" id="nik" placeholder="NIK"
                                             style="background-color: #D9D9D9;">
-                                    </div>
+                                    </div> -->
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="nama" placeholder="Nama"
+                                        <input v-model="employee.nama" type="text" class="form-control" id="nama" placeholder="Nama"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="alamat" placeholder="Alamat"
+                                        <input v-model="employee.alamat" type="text" class="form-control" id="alamat" placeholder="Alamat"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="no-telepon" placeholder="No Telepon"
+                                        <input v-model="employee.no_hp" type="text" class="form-control" id="no-telepon" placeholder="No Telepon"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
-                                        <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
+                                        <input v-model="employee.umur" type="number" class="form-control" id="umur" placeholder="Umur"
+                                            style="background-color: #D9D9D9;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <select v-model="employee.jenis_kelamin" class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Jenis Kelamin</option>
-                                            <option value="laki-laki" style="background-color: white;">Laki-Laki</option>
-                                            <option value="perempuan" style="background-color: white;">Perempuan</option>
+                                            <option value="pria" style="background-color: white;">Pria</option>
+                                            <option value="wanita" style="background-color: white;">Wanita</option>
                                         </select>
                                     </div>
                                     <div class="mb-4">
-                                        <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
+                                        <!-- <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
                                             <option selected style="background-color: white;" value="">Pilih Role</option>
-                                            <option value="laki-laki" style="background-color: white;">Employee</option>
-                                            <option value="perempuan" style="background-color: white;">Admin</option>
-                                        </select>
+                                            <option value="pria" style="background-color: white;">Employee</option>
+                                            <option value="wanita" style="background-color: white;">Admin</option>
+                                        </select> -->
                                     </div>
                                     <div class="d-flex justify-content-md-end justify-content-center">
-                                        <a href="/" type="login" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill" style="background-color: #1284ED;"
+                                        <button
+                                            type="button"
+                                            @click="addEmployee()"
+                                            class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
+                                            style="background-color: #1284ED;"
                                             onmouseover="this.style.backgroundColor='#075095'"
-                                            onmouseout="this.style.backgroundColor='#1284ED'">Simpan</a>
-                                        <RouterLink to="/admin/users" class="btn px-4 text-white h-5 font-weight-semibold ml-2 rounded-pill" style="background-color: #ED1212E5;"
+                                            onmouseout="this.style.backgroundColor='#1284ED'">Simpan</button>
+                                        <RouterLink to="/admin/users"
+                                            class="btn px-4 text-white h-5 font-weight-semibold ml-2 rounded-pill"
+                                            style="background-color: #ED1212E5;"
                                             onmouseover="this.style.backgroundColor='#9E0202E5'"
                                             onmouseout="this.style.backgroundColor='#ED1212E5'">Batal</RouterLink>
                                     </div>
@@ -75,5 +114,4 @@ import Navbar from '@/components/Navbar.vue';
             <FooterSection />
 
         </div>
-    </div>
-</template>
+    </div></template>

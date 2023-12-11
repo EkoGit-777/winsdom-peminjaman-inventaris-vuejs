@@ -4,8 +4,38 @@ import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 import Modal from '@/components/admin/Modal.vue'
-import { ref } from 'vue'
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { RouterLink } from 'vue-router';
 
+const semuaPeminjaman = ref()
+
+async function getAllPeminjamanData() {
+    try {
+        const response = await axios.get('http://localhost:3000/peminjamans/peminjamans')
+        console.log(response.data)
+        semuaPeminjaman.value = response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function formatDate(dateString) {
+      // Mengonversi string tanggalPeminjaman ke objek Date
+      const date = new Date(dateString);
+
+      // Mendapatkan tanggal, bulan, dan tahun
+      const tanggal = date.getDate();
+      const bulan = date.getMonth() + 1; // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+      const tahun = date.getFullYear();
+
+      // Format tanggal, bulan, dan tahun ke dalam string yang diinginkan
+      return `${tanggal < 10 ? '0' + tanggal : tanggal}/${bulan < 10 ? '0' + bulan : bulan}/${tahun}`;
+}
+
+onMounted(() => {
+    getAllPeminjamanData()
+})
 const showModal = ref(false)
 </script>
 
@@ -63,8 +93,8 @@ const showModal = ref(false)
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
+                                                <th scope="col">ID Peminjam</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">No Telepon</th>
                                                 <th scope="col">Pinjam</th>
                                                 <th scope="col">Tanggal Peminjaman</th>
                                                 <th scope="col">Verifikasi Peminjaman</th>
@@ -72,51 +102,55 @@ const showModal = ref(false)
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Imam mutaqin</td>
-                                                <td>088218102939</td>
-                                                <td>Obeng</td>
-                                                <td>20/12/2023 - 25/12/2023</td>
-                                                <td class="text-success font-weight-bold">Diterima</td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <Button
-                                                            class="btn btn-sm btn-primary font-weight-semibold rounded-lg"
-                                                            id="show-modal" @click="showModal = true">
-                                                            Pengembalian
-                                                        </Button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Indah</td>
-                                                <td>088218102939</td>
-                                                <td>Gunting</td>
-                                                <td>25/12/2023 - 26/12/2023</td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
-                                                            Terima
-                                                        </a>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
-                                                            Tolak
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <Button
-                                                            class="btn btn-sm btn-dark font-weight-semibold rounded-lg disabled"
-                                                            id="show-modal" @click="showModal = true">
-                                                            Pengembalian
-                                                        </Button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <template v-for="(peminjaman, index) in semuaPeminjaman">
+                                                <tr>
+                                                    <th scope="row">{{ index+1 }}</th>
+                                                    <td>{{ peminjaman.id }}</td>
+                                                    <td>{{ peminjaman.nama_employee }}</td>
+                                                    <td>{{ peminjaman.nama_barang }}</td>
+                                                    <td>{{formatDate( peminjaman.tanggalPeminjaman) }} - {{ formatDate(peminjaman.tanggalPeminjaman) }}</td>
+                                                    <template v-if="peminjaman.verifikasiPeminjaman == 'terima'">
+                                                        <td class="text-success font-weight-bold">Diterima</td>
+                                                    </template>
+                                                    <template v-else-if="peminjaman.verifikasiPeminjaman == 'tolak'">
+                                                        <td class="text-danger font-weight-bold">Ditolak</td>
+                                                    </template>
+                                                    <template v-else>
+                                                        <td>
+                                                            <div class="d-flex justify-content-center">
+                                                            <a href="#"
+                                                                class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
+                                                                Terima
+                                                            </a>
+                                                            <a href="#"
+                                                                class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
+                                                                Tolak
+                                                            </a>
+                                                        </div>
+                                                        </td>
+                                                    </template>
+                                                    <td>
+                                                        <template v-if="peminjaman.verifikasiPeminjaman == 'terima'">
+                                                            <div class="d-flex justify-content-center">
+                                                                <Button
+                                                                    class="btn btn-sm btn-primary font-weight-semibold rounded-lg"
+                                                                    id="show-modal" @click="showModal = true">
+                                                                    Pengembalian
+                                                                </button>
+                                                            </div>
+                                                        </template>
+                                                        <template v-else>
+                                                            <div class="d-flex justify-content-center">
+                                                                <Button
+                                                                    class="btn btn-sm btn-dark font-weight-semibold rounded-lg disabled"
+                                                                    id="show-modal" @click="showModal = true">
+                                                                    Pengembalian
+                                                                </button>
+                                                            </div>
+                                                        </template>
+                                                    </td>
+                                                </tr>
+                                            </template>
                                         </tbody>
                                     </table>
                                 </div>
@@ -159,10 +193,10 @@ const showModal = ref(false)
                     </div>
                     <div class="mb-3">
                         <textarea type="text" class="form-control" id="nik" placeholder="Catatan"
-                            style="background-color: #D9D9D9;"></textarea>
+                            style="background-color: #D9D9D9; height: 120px;"></textarea>
                     </div>
                     <div class="d-flex justify-content-md-end justify-content-center">
-                        <a href="/" type="login" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
+                        <a href="/" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
                             style="background-color: #1284ED;" onmouseover="this.style.backgroundColor='#075095'"
                             onmouseout="this.style.backgroundColor='#1284ED'">Simpan</a>
                     </div>
