@@ -103,7 +103,7 @@ const showModal = ref(false)
                                         </thead>
                                         <tbody>
                                             <template v-for="(peminjaman, index) in semuaPeminjaman">
-                                                <tr>
+                                                <tr class="text-capitalize">
                                                     <th scope="row">{{ index+1 }}</th>
                                                     <td>{{ peminjaman.id }}</td>
                                                     <td>{{ peminjaman.nama_employee }}</td>
