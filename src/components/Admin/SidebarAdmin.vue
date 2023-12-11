@@ -53,7 +53,7 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
     </nav>
 </template>
 
-<style scoped>
+<style>
 .sidebar {
     position: fixed;
     top: 0;
@@ -63,9 +63,27 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     z-index: 99;
 }
-
+.w-700px {
+    width: 700px;
+}
 .font-weight-semibold {
     font-weight: 600 !important;
+}
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    color: #0d6efd;
+}
+.navbar {
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+}
+
+@media screen and (max-width: 992px) {
+    .w-700px {
+        width: 500px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -73,10 +91,9 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
         top: 11.5rem;
         padding: 0;
     }
-}
-
-.navbar {
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    .w-700px {
+        width: 300px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -85,13 +102,5 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
         position: sticky;
         z-index: 999;
     }
-}
-
-.sidebar .nav-link {
-    color: #333;
-}
-
-.sidebar .nav-link.active {
-    color: #0d6efd;
 }
 </style>

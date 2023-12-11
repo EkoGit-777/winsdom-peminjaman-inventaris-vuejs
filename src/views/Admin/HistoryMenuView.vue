@@ -3,6 +3,10 @@ import SidebarAdmin from '@/components/Admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
+import Modal from '@/components/admin/Modal.vue'
+import { ref } from 'vue'
+
+const showModal = ref(false)
 </script>
 
 <template>
@@ -80,15 +84,15 @@ import Navbar from '@/components/Navbar.vue';
                                                             fill="#30E22C" />
                                                     </svg> </td>
 
-                                                <td><a href="#"><svg width="25" height="25" viewBox="0 0 27 20" fill="none"
+                                                <td><Button class="btn btn-sm" id="show-modal" @click="showModal = true">
+                                                        <svg width="25" height="25" viewBox="0 0 27 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M13.4333 0C5 0 0 10 0 10C0 10 5 20 13.4333 20C21.6667 20 26.6667 10 26.6667 10C26.6667 10 21.6667 0 13.4333 0ZM13.3333 3.33333C17.0333 3.33333 20 6.33333 20 10C20 13.7 17.0333 16.6667 13.3333 16.6667C9.66667 16.6667 6.66667 13.7 6.66667 10C6.66667 6.33333 9.66667 3.33333 13.3333 3.33333ZM13.3333 6.66667C11.5 6.66667 10 8.16667 10 10C10 11.8333 11.5 13.3333 13.3333 13.3333C15.1667 13.3333 16.6667 11.8333 16.6667 10C16.6667 9.66667 16.5333 9.36667 16.4667 9.06667C16.2 9.6 15.6667 10 15 10C14.0667 10 13.3333 9.26667 13.3333 8.33333C13.3333 7.66667 13.7333 7.13333 14.2667 6.86667C13.9667 6.76667 13.6667 6.66667 13.3333 6.66667Z"
                                                                 fill="black" />
-                                                        </svg></a></td>
-
+                                                        </svg>
+                                                    </Button></td>
                                             </tr>
-
                                             <tr>
                                                 <th scope="row">2</th>
                                                 <td>Lazuardi</td>
@@ -103,12 +107,14 @@ import Navbar from '@/components/Navbar.vue';
                                                             fill="#D0AF01" />
                                                     </svg> </td>
 
-                                                <td><a href="#"><svg width="25" height="25" viewBox="0 0 27 20" fill="none"
+                                                <td><Button class="btn btn-sm" id="show-modal" @click="showModal = true">
+                                                        <svg width="25" height="25" viewBox="0 0 27 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M13.4333 0C5 0 0 10 0 10C0 10 5 20 13.4333 20C21.6667 20 26.6667 10 26.6667 10C26.6667 10 21.6667 0 13.4333 0ZM13.3333 3.33333C17.0333 3.33333 20 6.33333 20 10C20 13.7 17.0333 16.6667 13.3333 16.6667C9.66667 16.6667 6.66667 13.7 6.66667 10C6.66667 6.33333 9.66667 3.33333 13.3333 3.33333ZM13.3333 6.66667C11.5 6.66667 10 8.16667 10 10C10 11.8333 11.5 13.3333 13.3333 13.3333C15.1667 13.3333 16.6667 11.8333 16.6667 10C16.6667 9.66667 16.5333 9.36667 16.4667 9.06667C16.2 9.6 15.6667 10 15 10C14.0667 10 13.3333 9.26667 13.3333 8.33333C13.3333 7.66667 13.7333 7.13333 14.2667 6.86667C13.9667 6.76667 13.6667 6.66667 13.3333 6.66667Z"
                                                                 fill="black" />
-                                                        </svg></a></td>
+                                                        </svg>
+                                                    </Button></td>
 
                                             </tr>
 
@@ -126,12 +132,14 @@ import Navbar from '@/components/Navbar.vue';
                                                             fill="#FB0000" />
                                                     </svg> </td>
 
-                                                <td><a href="#"><svg width="25" height="25" viewBox="0 0 27 20" fill="none"
+                                                <td><Button class="btn btn-sm" id="show-modal" @click="showModal = true">
+                                                        <svg width="25" height="25" viewBox="0 0 27 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M13.4333 0C5 0 0 10 0 10C0 10 5 20 13.4333 20C21.6667 20 26.6667 10 26.6667 10C26.6667 10 21.6667 0 13.4333 0ZM13.3333 3.33333C17.0333 3.33333 20 6.33333 20 10C20 13.7 17.0333 16.6667 13.3333 16.6667C9.66667 16.6667 6.66667 13.7 6.66667 10C6.66667 6.33333 9.66667 3.33333 13.3333 3.33333ZM13.3333 6.66667C11.5 6.66667 10 8.16667 10 10C10 11.8333 11.5 13.3333 13.3333 13.3333C15.1667 13.3333 16.6667 11.8333 16.6667 10C16.6667 9.66667 16.5333 9.36667 16.4667 9.06667C16.2 9.6 15.6667 10 15 10C14.0667 10 13.3333 9.26667 13.3333 8.33333C13.3333 7.66667 13.7333 7.13333 14.2667 6.86667C13.9667 6.76667 13.6667 6.66667 13.3333 6.66667Z"
                                                                 fill="black" />
-                                                        </svg></a></td>
+                                                        </svg>
+                                                    </Button></td>
                                             </tr>
 
                                         </tbody>
@@ -142,20 +150,31 @@ import Navbar from '@/components/Navbar.vue';
                                 <div class="col-md-6 pl-md-4 d-flex justify-content-md-start justify-content-center">
                                     <p>Show 10 of 20 data</p>
                                 </div>
-                            <div class="col-md-6 d-flex justify-content-md-end justify-content-center pr-md-4">
-                                <button class="btn btn-sm btn-light font-weight-bold"
-                                    style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Prev</button>
-                                <button class="btn btn-sm btn-light font-weight-bold"
-                                    style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Next</button>
+                                <div class="col-md-6 d-flex justify-content-md-end justify-content-center pr-md-4">
+                                    <button class="btn btn-sm btn-light font-weight-bold"
+                                        style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Prev</button>
+                                    <button class="btn btn-sm btn-light font-weight-bold"
+                                        style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Next</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-        <FooterSection />
+            <FooterSection />
 
+        </div>
     </div>
-</div>
+    <Teleport to="body">
+        <!-- use the modal component, pass in the prop -->
+        <modal :show="showModal" @close="showModal = false">
+            <template #header>
+                <h3 class="text-white">Catatan</h3>
+            </template>
+            <template #body>
+                <p class="text-center">Terjadi kerusakan pada mata bor</p>
+            </template>
+        </modal>
+    </Teleport>
 </template>

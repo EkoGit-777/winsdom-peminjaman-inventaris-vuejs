@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import('../views/Admin/HomeView.vue')
     },
     {
+      path: '/admin/editprofile',
+      name: 'editProfileAdmin',
+      component: () => import('../views/Admin/FormEditProfileView.vue')
+    },
+    {
       path: '/admin/users',
       name: 'usersAdmin',
       component: () => import('../views/Admin/UsersMenuView.vue')

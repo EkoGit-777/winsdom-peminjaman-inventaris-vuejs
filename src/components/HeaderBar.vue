@@ -35,7 +35,7 @@
                     </svg>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">
+                    <li><RouterLink to="/admin/editprofile" class="dropdown-item">
                             <svg width="20" height="20" viewBox="0 0 37 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M0 34.1572C0 28.3978 5.30855 23.7288 11.857 23.7288H25.1431C31.6914 23.7288 37 28.3978 37 34.1572C37 36.533 35.1713 38.5957 32.5066 38.984C29.1713 39.4701 24.223 39.9999 18.5 39.9999C12.7771 39.9999 7.82874 39.4701 4.49351 38.984C1.82863 38.5957 0 36.533 0 34.1572Z"
@@ -45,7 +45,7 @@
                                     fill="#212121" />
                             </svg>
                             <span>Profile</span>
-                        </a></li>
+                        </RouterLink></li>
                     <li><a class="dropdown-item" href="#">
                             <svg width="20" height="20" viewBox="0 0 37 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"

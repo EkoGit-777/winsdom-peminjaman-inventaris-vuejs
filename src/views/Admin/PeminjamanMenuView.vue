@@ -3,10 +3,13 @@ import SidebarAdmin from '@/components/Admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
+import Modal from '@/components/admin/Modal.vue'
+import { ref } from 'vue'
+
+const showModal = ref(false)
 </script>
 
 <template>
-    
     <Navbar />
 
     <div class="container-fluid">
@@ -78,9 +81,11 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td class="text-success font-weight-bold">Diterima</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="#" class="btn btn-sm btn-primary font-weight-semibold rounded-lg">
+                                                        <Button
+                                                            class="btn btn-sm btn-primary font-weight-semibold rounded-lg"
+                                                            id="show-modal" @click="showModal = true">
                                                             Pengembalian
-                                                        </a>
+                                                        </Button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -92,19 +97,23 @@ import Navbar from '@/components/Navbar.vue';
                                                 <td>25/12/2023 - 26/12/2023</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="#" class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
+                                                        <a href="#"
+                                                            class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
                                                             Terima
                                                         </a>
-                                                        <a href="#" class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
+                                                        <a href="#"
+                                                            class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
                                                             Tolak
                                                         </a>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="#" class="btn btn-sm btn-dark font-weight-semibold disabled rounded-lg">
+                                                        <Button
+                                                            class="btn btn-sm btn-dark font-weight-semibold rounded-lg disabled"
+                                                            id="show-modal" @click="showModal = true">
                                                             Pengembalian
-                                                        </a>
+                                                        </Button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -132,4 +141,32 @@ import Navbar from '@/components/Navbar.vue';
 
         </div>
     </div>
-</template>
+    <Teleport to="body">
+        <!-- use the modal component, pass in the prop -->
+        <modal :show="showModal" @close="showModal = false">
+            <template #header>
+                <h5 class="text-white text-center">Pengembalian Inventory</h5>
+            </template>
+            <template #body>
+                <form>
+                    <div class="mb-4">
+                        <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
+                            <option selected style="background-color: white;" value="">Pilih Kondisi</option>
+                            <option value="aman" style="background-color: white;">Aman</option>
+                            <option value="rusak" style="background-color: white;">Rusak</option>
+                            <option value="hilang" style="background-color: white;">Hilang</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea type="text" class="form-control" id="nik" placeholder="Catatan"
+                            style="background-color: #D9D9D9;"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-md-end justify-content-center">
+                        <a href="/" type="login" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
+                            style="background-color: #1284ED;" onmouseover="this.style.backgroundColor='#075095'"
+                            onmouseout="this.style.backgroundColor='#1284ED'">Simpan</a>
+                    </div>
+                </form>
+            </template>
+    </modal>
+</Teleport></template>
