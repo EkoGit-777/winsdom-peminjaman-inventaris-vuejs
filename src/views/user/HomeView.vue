@@ -15,7 +15,7 @@ import Navbar from '@/components/Navbar.vue';
                 <div class="row pt-2 ">
                     <HeaderBar/>
                     <div class="mb-4 mb-lg-0">
-                        <h3 class="mb-3" style="color: #1284ED; font-weight: bold;">Halo, User</h3>
+                        <h3 class="mb-3 text-center text-md-left" style="color: #1284ED; font-weight: bold;">Halo, User</h3>
                         <div class="card"
                             style="background-color: #FAF3F3; box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);">
                             
