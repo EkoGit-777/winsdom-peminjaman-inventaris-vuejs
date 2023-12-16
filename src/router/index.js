@@ -36,8 +36,8 @@ const router = createRouter({
       component: () => import('../views/admin/FormTambahUserView.vue')
     },
     {
-      // path: '/admin/users/edituser/:id',
-      path: '/admin/users/edituser',
+      path: '/admin/users/edituser/:id',
+      // path: '/admin/users/edituser',
       name: 'editUserAdmin',
       component: () => import('../views/admin/FormEditUserView.vue')
     },
@@ -52,8 +52,8 @@ const router = createRouter({
       component: () => import('../views/admin/InventoryMenuView.vue')
     },
     {
-      // path: '/admin/inventory/:id',
-      path: '/admin/inventory/inventorydetail',
+      path: '/admin/inventory/:id',
+      // path: '/admin/inventory/inventorydetail',
       name: 'inventoryDetailAdmin',
       component: () => import('../views/admin/InventoryDetailView.vue')
     },

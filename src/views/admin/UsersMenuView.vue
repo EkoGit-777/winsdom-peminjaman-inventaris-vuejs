@@ -11,11 +11,25 @@ const users = ref()
 
 async function getAllUserData() {
     try {
-        const response = await axios.get('http://localhost:3000/users/employees')
-        console.log(response.data)
+        const response = await axios.get('http://localhost:3350/users/employees-join-users')
         users.value = response.data.data
     } catch (error) {
         console.log(error)
+    }
+}
+
+async function deleteUserData(userId) {
+    const userConfirmed = window.confirm("Apakah Anda yakin ingin menghapus data?");
+    if(userConfirmed){
+        try {
+            const response = await axios.delete(`http://localhost:3350/users/employees/${userId}`)
+            const response2 = await axios.delete(`http://localhost:3350/users/${userId}`)
+            alert("Data berhasil dihapus")
+            await getAllUserData()
+            router.push({ name: 'usersAdmin' })
+        } catch (error) {
+        console.log(error)
+        }
     }
 }
 
@@ -44,11 +58,6 @@ onMounted(() => {
                                 <div class="row mb-3">
                                     <div class="col-md-6 d-flex justify-content-md-start justify-content-center">
                                         <h1 class="h2">Users</h1>
-                                    </div>
-                                    <div class="col-md-6 d-flex justify-content-md-end justify-content-center">
-                                        <RouterLink to="/admin/users/tambahuser"
-                                            class="btn btn-primary rounded-pill font-weight-semibold"
-                                            style="height: 40px;">Tambah User</RouterLink>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -96,16 +105,16 @@ onMounted(() => {
                                             <template v-for="(user, index) in users">
                                             <tr class="text-capitalize">
                                                 <th scope="row">{{ index+1 }}</th>
-                                                <td>00000</td>
+                                                <td>{{ user.NIK }}</td>
                                                 <td>{{ user.nama_employee }}</td>
                                                 <td>{{ user.alamat }}</td>
                                                 <td>{{ user.no_hp }}</td>
                                                 <td>{{ user.jenis_kelamin }}</td>
-                                                <td>-----</td>
+                                                <td>{{ user.role }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <RouterLink to="/admin/users/edituser"
-                                                            class="text-decoration-none mr-2">
+                                                        <RouterLink :to="{name: 'editUserAdmin', params: {id: user.userId}}"
+                                                            class="btn btn-small text-decoration-none">
                                                             <svg width="25" height="25" viewBox="0 0 21 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path
@@ -114,7 +123,7 @@ onMounted(() => {
                                                                     stroke-linejoin="round" />
                                                             </svg>
                                                         </RouterLink>
-                                                        <a href="#" class="text-decoration-none ml-2">
+                                                        <button @click="deleteUserData(user.userId)" type="button" class="btn btn-small text-decoration-none">
                                                             <svg width="25" height="25" viewBox="0 0 21 19" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path
@@ -122,7 +131,7 @@ onMounted(() => {
                                                                     stroke="red" stroke-width="2" stroke-linecap="round"
                                                                     stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
