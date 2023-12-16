@@ -1,7 +1,7 @@
 <script setup>
 import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 import Modal from '@/components/admin/Modal.vue'
 import axios from 'axios';
@@ -12,7 +12,7 @@ const semuaPeminjaman = ref()
 
 async function getAllPeminjamanData() {
     try {
-        const response = await axios.get('http://localhost:3000/peminjamans/peminjamans')
+        const response = await axios.get('http://localhost:3350/peminjamans/peminjamans')
         console.log(response.data)
         semuaPeminjaman.value = response.data.data
     } catch (error) {
@@ -168,6 +168,7 @@ const showModal = ref(false)
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </main>
 

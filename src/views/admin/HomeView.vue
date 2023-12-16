@@ -1,7 +1,7 @@
 <script setup>
 import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 </script>
 

@@ -1,7 +1,7 @@
 <script setup>
-import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
+import SidebarUser from '@/components/user/SidebarUser.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/admin/HeaderBar.vue';
+import HeaderBar from '@/components/user/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 </script>
 
@@ -11,7 +11,7 @@ import Navbar from '@/components/Navbar.vue';
     <div class="container-fluid">
         <div class="row">
 
-            <SidebarAdmin />
+            <SidebarUser />
 
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-2 pb-4">
                 <div class="row pt-2 ">

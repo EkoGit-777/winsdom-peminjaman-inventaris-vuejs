@@ -1,7 +1,7 @@
 <script setup>
 import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 import axios from 'axios'
 import { ref } from 'vue'
@@ -19,7 +19,7 @@ const employee = ref({
 async function addEmployee() {
     try {
         const response = await axios.post(
-            'http://localhost:3000/users/employees',{
+            'http://localhost:3350/users/employees',{
                 nama: employee.value.nama,
                 alamat: employee.value.alamat,
                 no_hp: employee.value.no_hp,

@@ -1,9 +1,8 @@
 <script setup>
-import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
+import SidebarUser from '@/components/user/SidebarUser.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/admin/HeaderBar.vue';
+import HeaderBar from '@/components/user/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
-import Modal from '@/components/admin/Modal.vue'
 import { ref } from 'vue'
 
 const showModal = ref(false)
@@ -15,7 +14,7 @@ const showModal = ref(false)
     <div class="container-fluid">
         <div class="row">
 
-            <SidebarAdmin />
+            <SidebarUser />
 
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-2 pb-4">
                 <div class="row pt-2 ">
@@ -59,8 +58,7 @@ const showModal = ref(false)
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">No Telepon</th>
+                                                <th scope="col">ID Peminjaman</th>
                                                 <th scope="col">Pinjam</th>
                                                 <th scope="col">Tanggal Peminjaman</th>
                                                 <th scope="col">Tanggal Pengembalian</th>
@@ -72,8 +70,7 @@ const showModal = ref(false)
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td>Imam Mutaqin</td>
-                                                <td>083746733647</td>
+                                                <td>2223</td>
                                                 <td>Obeng</td>
                                                 <td>20/12/2023 - 25/12/2023</td>
                                                 <td>25/12/2023</td>
@@ -95,18 +92,16 @@ const showModal = ref(false)
                                             </tr>
                                             <tr>
                                                 <th scope="row">2</th>
-                                                <td>Lazuardi</td>
-                                                <td>083746733647</td>
+                                                <td>2224</td>
                                                 <td>Bor</td>
                                                 <td>20/12/2023 - 25/12/2023</td>
-                                                <td>25/12/2023</td>
+                                                <td>27/12/2023</td>
                                                 <td><span class="mr-1">Rusak</span><svg width="25" height="25"
                                                         viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M3.10154 0.25V1.42188H10.5862L11.2371 0.25H3.10154ZM3.25017 2.125C3.41849 2.55074 3.04111 3.28609 2.88783 3.63234C2.45791 4.5973 1.76564 5.88242 1.24642 7.36008C0.72728 8.83773 0.378765 10.5189 0.654624 12.2866C0.930523 14.0543 1.83892 15.8943 3.76244 17.6575L3.86326 17.75H14.1367L14.2375 17.6575C16.161 15.8943 17.0694 14.0543 17.3453 12.2866C17.6212 10.5189 17.2727 8.83773 16.7535 7.36004C16.2344 5.88242 15.542 4.5973 15.1121 3.6323C14.9373 3.23988 14.8097 2.89984 14.7483 2.64121L11.8141 4.01906L14.2765 5.28059L12.8598 8.34531L15.2786 9.09551L9.28166 14.4928L11.8588 9.95687L9.58537 9.83297L11.45 6.0707L8.59025 5.01531L10.1957 2.125H3.25017Z"
                                                             fill="#D0AF01" />
                                                     </svg> </td>
-
                                                 <td><Button class="btn btn-sm" id="show-modal" @click="showModal = true">
                                                         <svg width="25" height="25" viewBox="0 0 27 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -120,8 +115,7 @@ const showModal = ref(false)
 
                                             <tr>
                                                 <th scope="row">3</th>
-                                                <td>Indah</td>
-                                                <td>083746733647</td>
+                                                <td>2225</td>
                                                 <td>Gunting</td>
                                                 <td>20/12/2023 - 25/12/2023</td>
                                                 <td>25/12/2023</td>

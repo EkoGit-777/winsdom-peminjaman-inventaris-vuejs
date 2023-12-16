@@ -54,7 +54,6 @@ async function register() {
   }
 }
 
-
 // async function register() {
 //   if (user.value.password === user.value.konfirmasi_password) {
 //     try {

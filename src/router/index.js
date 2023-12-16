@@ -52,15 +52,15 @@ const router = createRouter({
       component: () => import('../views/admin/InventoryMenuView.vue')
     },
     {
+      path: '/admin/inventory/tambahinventory',
+      name: 'tambahInventoryAdmin',
+      component: () => import('../views/admin/FormTambahInventoryView.vue')
+    },
+    {
       path: '/admin/inventory/:id',
       // path: '/admin/inventory/inventorydetail',
       name: 'inventoryDetailAdmin',
       component: () => import('../views/admin/InventoryDetailView.vue')
-    },
-    {
-      path: '/admin/inventory/tambahinventory',
-      name: 'tambahInventoryAdmin',
-      component: () => import('../views/admin/FormTambahInventoryView.vue')
     },
     {
       // path: '/admin/inventory/editinventory/:id',
@@ -79,6 +79,26 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/user/HomeView.vue')
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: () => import('../views/user/HistoryMenuView.vue')
+    },
+    {
+      path: '/peminjaman',
+      name: 'peminjaman',
+      component: () => import('../views/user/PeminjamanMenuView.vue')
+    },
+    {
+      path: '/inventory',
+      name: 'inventory',
+      component: () => import('../views/user/InventoryMenuView.vue')
+    },
+    {
+      path: '/inventory/form-peminjaman',
+      name: 'form-peminjaman',
+      component: () => import('../views/user/FormPeminjamanView.vue')
     }
 
   ]

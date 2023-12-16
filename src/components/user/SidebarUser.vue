@@ -3,7 +3,6 @@ import DashboardMenuIcon from '../icons/DashboardMenuIcon.vue';
 import HistoryMenuIcon from '../icons/HistoryMenuIcon.vue';
 import InventoryMenuIcon from '../icons/InventoryMenuIcon.vue';
 import PeminjamanMenuIcon from '../icons/PeminjamanMenuIcon.vue';
-import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
 </script>
 
 <template>
@@ -19,28 +18,28 @@ import UsersMenuIcon from '../icons/UsersMenuIcon.vue';
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/Admin/menuHome.html">
+                    <RouterLink to="/" class="nav-link" aria-current="page">
                         <DashboardMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Dashboard</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Admin/menuHistory.html">
+                    <RouterLink to="/history" class="nav-link">
                         <HistoryMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">History</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuPeminjaman.html">
+                    <RouterLink to="peminjaman" class="nav-link">
                         <PeminjamanMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Peminjaman</span>
-                    </a>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/menuInventory.html">
+                    <RouterLink to="inventory" class="nav-link">
                         <InventoryMenuIcon/>
                         <span class="ml-2 text-white font-weight-bold h5">Inventory</span>
-                    </a>
+                    </RouterLink>
                 </li>
             </ul>
         </div>

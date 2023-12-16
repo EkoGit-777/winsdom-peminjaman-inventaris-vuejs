@@ -1,27 +1,190 @@
 <script setup>
 import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import { ref, computed, onMounted, reactive, watchEffect } from 'vue';
 import { RouterLink } from 'vue-router';
 
-const inventories = ref()
+// const inventories = reactive({
+//     value: [{
+//       "id": 1,
+//       "nama_barang": "proyektor",
+//       "category": "barang",
+//       "deskripsi": "ini adalah proyektor untuk nobar piala dunia",
+//       "alamat": "gedung admin",
+//       "image": "123456",
+//       "stok": 12,
+//       "status": "tersedia",
+//       "created_at": "2023-12-05T14:04:26.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 3,
+//       "nama_barang": "meeting room",
+//       "category": "ruangan",
+//       "deskripsi": "ini adalah tempat untuk di gunakan perkumpulan khusus bagian dan lain lain",
+//       "alamat": "aula perusahaan",
+//       "image": "102145",
+//       "stok": 1,
+//       "status": "tersedia",
+//       "created_at": "2023-12-09T13:34:51.000Z",
+//       "updated_at": "2023-12-09T07:31:23.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },
+//     {
+//       "id": 2,
+//       "nama_barang": "palu",
+//       "category": "barang",
+//       "deskripsi": "ini adalah palu untuk mukul orang",
+//       "alamat": "gedung admin",
+//       "image": "675858",
+//       "stok": 10,
+//       "status": "disewa",
+//       "created_at": "2023-12-11T18:45:21.000Z",
+//       "updated_at": "2023-12-04T04:20:18.000Z"
+//     },],
+// });
+
+const inventories = reactive({
+    value:[]
+})
 
 async function getAllInventoryData() {
     try {
-        const response = await axios.get('http://localhost:3000/masters/inventories')
-        console.log(response.data)
-        inventories.value = response.data.data
+        const response = await axios.get('http://localhost:3350/masters/inventories');
+        console.log(response.data);
+        inventories.value = response.data.data || [];
     } catch (error) {
-        console.log(error)
+        console.error(error);
     }
 }
 
+const itemsPerPage = ref(10);
+const currentPage = ref(1);
+
+const totalPages = computed(() => Math.ceil(inventories.value.length / itemsPerPage.value));
+
+const paginatedData = ref([]);
+
+watchEffect(() => {
+    const startIndex = (currentPage.value - 1) * itemsPerPage.value;
+    const endIndex = startIndex + itemsPerPage.value;
+    paginatedData.value = inventories.value.slice(startIndex, endIndex);
+});
+
+const changeItemsPerPage = () => {
+  currentPage.value = 1;
+};
+
+const getRangeStart = () => {
+  return (currentPage.value - 1) * itemsPerPage.value + 1;
+};
+
+const getRangeEnd = () => {
+  const end = currentPage.value * itemsPerPage.value;
+  return end > inventories.value.length ? inventories.value.length : end;
+};
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
+
 onMounted(() => {
-    getAllInventoryData()
-})
+    getAllInventoryData();
+});
 </script>
 
 <template>
@@ -55,8 +218,8 @@ onMounted(() => {
                                     <div class="col-lg-6 d-flex justify-content-lg-start justify-content-center">
                                         <p>Show</p>
                                         <select class="form-select form-select-sm mx-2" style="width: 55px;">
-                                            <option selected value="10">10</option>
-                                            <option value="20">20</option>
+                                            <option selected value="10">5</option>
+                                            <option value="20">10</option>
                                             <option value="30">30</option>
                                             <option value="30">40</option>
                                             <option value="30">50</option>
@@ -66,7 +229,7 @@ onMounted(() => {
                                     <div class="col-lg-6 d-lg-flex justify-content-lg-end justify-content-center">
                                         <div class="d-flex justify-content-center">
                                             <p>Search by</p>
-                                            <select class="form-select form-select-sm mx-2" style="width: 90px;">
+                                            <select v-model="itemsPerPage" @change="changeItemsPerPage" class="form-select form-select-sm mx-2" style="width: 90px;">
                                                 <option selected value="nik">ID</option>
                                                 <option value="nama">Nama</option>
                                                 <option value="alamat">Status</option>
@@ -92,14 +255,15 @@ onMounted(() => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template v-for="(inventory, index) in inventories">
+                                            <template v-for="(inventory, index) in paginatedData">
                                                 <tr>
                                                     <th scope="row">{{ index + 1 }}</th>
                                                     <td>{{ inventory.id }}</td>
                                                     <td class="text-capitalize">{{ inventory.nama_barang }}</td>
                                                     <td class="text-capitalize">{{ inventory.category }}</td>
                                                     <td class="text-capitalize">{{ inventory.alamat }}</td>
-                                                    <td class="text-truncate" style="max-width: 150px;">{{ inventory.deskripsi }}</td>
+                                                    <td class="text-truncate" style="max-width: 150px;">{{
+                                                        inventory.deskripsi }}</td>
                                                     <template v-if="inventory.status == 'tersedia'">
                                                         <td>
                                                             <div class="d-flex justify-content-center align-items-center">
@@ -135,8 +299,7 @@ onMounted(() => {
                                                     </template>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                            <RouterLink to="/admin/inventory/inventorydetail"
-                                                                class="text-decoration-none mr-3">
+                                                            <RouterLink :to="{name: 'inventoryDetailAdmin', params: {id: inventory.id}}" class="text-decoration-none mr-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28"
                                                                     height="20" viewBox="0 0 28 20" fill="none">
                                                                     <path
@@ -173,12 +336,14 @@ onMounted(() => {
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6 pl-md-4 d-flex justify-content-md-start justify-content-center">
-                                    <p>Show 10 of 20 data</p>
+                                    <p>Show {{ getRangeStart() }}-{{ getRangeEnd() }} of {{ inventories.value.length }} data</p>
                                 </div>
-                                <div class="col-md-6 d-flex justify-content-md-end justify-content-center pr-md-4">
+                                <div @click="prevPage" :disabled="currentPage === 1"
+                                    class="col-md-6 d-flex justify-content-md-end justify-content-center pr-md-4">
                                     <button class="btn btn-sm btn-light font-weight-bold"
                                         style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Prev</button>
-                                    <button class="btn btn-sm btn-light font-weight-bold"
+                                    <button @click="nextPage" :disabled="currentPage === totalPages"
+                                        class="btn btn-sm btn-light font-weight-bold"
                                         style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Next</button>
                                 </div>
                             </div>
@@ -189,5 +354,8 @@ onMounted(() => {
 
             <FooterSection />
 
+        </div>
     </div>
-</div></template>
+</template>
+  
+  

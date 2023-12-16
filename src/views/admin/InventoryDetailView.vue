@@ -1,9 +1,32 @@
 <script setup>
 import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '@/components/admin/HeaderBar.vue';
 import ImageGallery from '@/components/ImageGallery.vue';
 import Navbar from '@/components/Navbar.vue';
+import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const inventoryId = route.params.id;
+const inventory = ref(false);
+
+async function getInventoryData() {
+    try {
+        const response = await axios.get(`http://localhost:3350/masters/inventories/${inventoryId}`)
+        console.log(response.data)
+        inventory.value = response.data.data[0];
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+onMounted(() => {
+    getInventoryData()
+})
+
 </script>
 
 <template>
@@ -18,8 +41,22 @@ import Navbar from '@/components/Navbar.vue';
                 <div class="row pt-2 ">
 
                     <HeaderBar />
-
                     <div class="mb-4 mb-lg-0">
+                        <div class="card" style="background-color: #FAF3F3; box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center">
+                                    <h1 class="h1 font-weight-bold">{{inventory.nama_barang }}</h1>
+                                </div>
+                                <div class="mt-3 h6 lh-base">
+                                    {{ inventory.deskripsi }}
+                                </div>
+                                
+                                <ImageGallery/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="mb-4 mb-lg-0">
                         <div class="card" style="background-color: #FAF3F3; box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);">
                             <div class="card-body">
                                 <div class="d-flex justify-content-center">
@@ -58,7 +95,7 @@ import Navbar from '@/components/Navbar.vue';
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </main>
 
