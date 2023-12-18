@@ -16,7 +16,6 @@ const inventory = ref(false);
 async function getInventoryData() {
     try {
         const response = await axios.get(`http://localhost:3350/masters/inventories/${inventoryId}`)
-        console.log(response.data)
         inventory.value = response.data.data[0];
     } catch (error) {
         console.log(error)
@@ -51,7 +50,7 @@ onMounted(() => {
                                     {{ inventory.deskripsi }}
                                 </div>
                                 
-                                <ImageGallery/>
+                                <ImageGallery :img="inventory.image"/>
 
                             </div>
                         </div>

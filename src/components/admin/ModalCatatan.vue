@@ -1,7 +1,13 @@
 <script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
 const props = defineProps({
-    show: Boolean
+    show: Boolean,
+    historyData: Object,
 })
+
 </script>
 
 <template>
@@ -15,7 +21,8 @@ const props = defineProps({
                         </div>
                         <div class="col-4 d-flex justify-content-end">
                             <button class="modal-default-button rounded-circle border-0" @click="$emit('close')">
-                                <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20" height="20" viewBox="0 0 25 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M4.49045 0L0 4.49045L2.29299 6.78344L7.96178 12.5478L2.29299 18.2166L0 20.414L4.49045 25L6.78344 22.707L12.5478 16.9427L18.2166 22.707L20.414 25L25 20.414L22.707 18.2166L16.9427 12.5478L22.707 6.78344L25 4.49045L20.414 0L18.2166 2.29299L12.5478 7.96178L6.78344 2.29299L4.49045 0Z"
                                         fill="#DE0000" />
@@ -26,6 +33,7 @@ const props = defineProps({
                 </div>
                 <div class="modal-body rounded-4">
                     <slot name="body"></slot>
+                        <p class="text-center font-weight-bold">{{ historyData.catatan }}</p>
                 </div>
             </div>
         </div>
@@ -50,7 +58,7 @@ const props = defineProps({
     margin: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-    background-color: white; 
+    background-color: white;
     border: 8px solid #1284ED;
 }
 

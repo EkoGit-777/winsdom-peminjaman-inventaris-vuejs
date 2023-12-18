@@ -13,14 +13,14 @@ const userId = route.params.id;
 
 const employee = ref('');
 
-const getEmployeeData = async () => {
+async function getEmployeeData() {
     try {
-    const response = await axios.get(`http://localhost:3350/users/employees-join-users/${userId}`);
-    employee.value = response.data.data[0];
-  } catch (error) {
-    console.error("Error fetching employee data", error.response.data);
-  }
-};
+        const response = await axios.get(`http://localhost:3350/users/employees-join-users/${userId}`);
+        employee.value = response.data.data[0];
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 async function updateEmployee() {
   const response = await axios.put(`http://localhost:3350/users/employees-join-users/${userId}`, {
@@ -92,7 +92,7 @@ onMounted(() => {
                                         <button @click="updateEmployee" type="button" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill" style="background-color: #1284ED;"
                                             onmouseover="this.style.backgroundColor='#075095'"
                                             onmouseout="this.style.backgroundColor='#1284ED'">Simpan</button>
-                                        <RouterLink to="/admin/users" type="login" class="btn px-4 text-white h-5 font-weight-semibold ml-2 rounded-pill" style="background-color: #ED1212E5;"
+                                        <RouterLink to="/admin/users" class="btn px-4 text-white h-5 font-weight-semibold ml-2 rounded-pill" style="background-color: #ED1212E5;"
                                             onmouseover="this.style.backgroundColor='#9E0202E5'"
                                             onmouseout="this.style.backgroundColor='#ED1212E5'">Batal</RouterLink>
                                     </div>

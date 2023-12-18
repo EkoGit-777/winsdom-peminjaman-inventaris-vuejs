@@ -1,17 +1,23 @@
+<script setup>
+const props = defineProps({
+    img: String,
+});
+</script>
+
 <template>
     <div class="pt-2">
         <div class="d-flex justify-content-center">
-            <img src="@/assets/images/proyektor-1.png" class="img" />
+            <img :src="'http://localhost:3350/uploads/images/' + props.img" class="img" />
         </div>
-        <div class="d-flex justify-content-between mt-2 mx-auto card-img-list">
+        <!-- <div class="d-flex justify-content-between mt-2 mx-auto card-img-list">
             <img src="@/assets/images/proyektor-1.png" class="img-list img-active" />
             <img src="@/assets/images/proyektor-2.png" class="img-list" />
             <img src="@/assets/images/proyektor-3.png" class="img-list" />
             <img src="@/assets/images/proyektor-4.png" class="img-list" />
-        </div>
+        </div> -->
     </div>
 </template>
-<style scoped>
+<style>
 .img {
     width: 720px;
     height: 500px;

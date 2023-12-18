@@ -5,7 +5,7 @@ import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
 import axios from 'axios';
 import { ref, computed, onMounted, reactive, watchEffect } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 
 // const inventories = reactive({
 //     value: [{
@@ -137,10 +137,23 @@ const inventories = reactive({
 async function getAllInventoryData() {
     try {
         const response = await axios.get('http://localhost:3350/masters/inventories');
-        console.log(response.data);
         inventories.value = response.data.data || [];
     } catch (error) {
         console.error(error);
+    }
+}
+
+async function deleteInventoryData(inventoryId) {
+    const userConfirmed = window.confirm("Apakah Anda yakin ingin menghapus data?");
+    if (userConfirmed){
+        try {
+            const response = await axios.delete(`http://localhost:3350/masters/inventories/${inventoryId}`);
+            alert("Data berhasil dihapus");
+            await getAllInventoryData();
+            router.push({ name: 'inventoryAdmin' });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 
@@ -299,7 +312,7 @@ onMounted(() => {
                                                     </template>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                            <RouterLink :to="{name: 'inventoryDetailAdmin', params: {id: inventory.id}}" class="text-decoration-none mr-3">
+                                                            <RouterLink :to="{name: 'inventoryDetailAdmin', params: {id: inventory.id}}" class="btn btn -sm text-decoration-none">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28"
                                                                     height="20" viewBox="0 0 28 20" fill="none">
                                                                     <path
@@ -307,8 +320,8 @@ onMounted(() => {
                                                                         fill="black" />
                                                                 </svg>
                                                             </RouterLink>
-                                                            <RouterLink to="/admin/inventory/editinventory"
-                                                                class="text-decoration-none mr-2">
+                                                            <RouterLink :to="{name: 'editInventoryAdmin', params: {id: inventory.id}}"
+                                                                class="btn btn-sm text-decoration-none">
                                                                 <svg width="25" height="25" viewBox="0 0 21 20" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path
@@ -317,7 +330,7 @@ onMounted(() => {
                                                                         stroke-linecap="round" stroke-linejoin="round" />
                                                                 </svg>
                                                             </RouterLink>
-                                                            <a href="#" class="text-decoration-none ml-2">
+                                                            <button @click="deleteInventoryData(inventory.id)" class="btn btn-sm text-decoration-none">
                                                                 <svg width="25" height="25" viewBox="0 0 21 19" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path
@@ -325,7 +338,7 @@ onMounted(() => {
                                                                         stroke="red" stroke-width="2" stroke-linecap="round"
                                                                         stroke-linejoin="round" />
                                                                 </svg>
-                                                            </a>
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>

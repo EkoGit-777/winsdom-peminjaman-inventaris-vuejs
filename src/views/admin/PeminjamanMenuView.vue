@@ -3,16 +3,15 @@ import SidebarAdmin from '@/components/admin/SidebarAdmin.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/admin/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
-import Modal from '@/components/admin/Modal.vue'
+import ModalPeminjaman from '@/components/admin/ModalPeminjaman.vue'
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import { RouterLink } from 'vue-router';
 
 const semuaPeminjaman = ref()
 
 async function getAllPeminjamanData() {
     try {
-        const response = await axios.get('http://localhost:3350/peminjamans/peminjamans')
+        const response = await axios.get('http://localhost:3350/peminjamans/peminjamans-join-inventories')
         console.log(response.data)
         semuaPeminjaman.value = response.data.data
     } catch (error) {
@@ -20,23 +19,45 @@ async function getAllPeminjamanData() {
     }
 }
 
-function formatDate(dateString) {
-      // Mengonversi string tanggalPeminjaman ke objek Date
-      const date = new Date(dateString);
-
-      // Mendapatkan tanggal, bulan, dan tahun
-      const tanggal = date.getDate();
-      const bulan = date.getMonth() + 1; // Perlu ditambah 1 karena indeks bulan dimulai dari 0
-      const tahun = date.getFullYear();
-
-      // Format tanggal, bulan, dan tahun ke dalam string yang diinginkan
-      return `${tanggal < 10 ? '0' + tanggal : tanggal}/${bulan < 10 ? '0' + bulan : bulan}/${tahun}`;
+async function updateVerifikasiPeminjaman(id, value) {
+    const userConfirmed = window.confirm("Apakah Anda yakin dengan pilihan ini?");
+    if (userConfirmed) {
+        try {
+            const response = await axios.put(`http://localhost:3350/peminjamans/verifikasi-peminjaman/${id}`, {
+                verifikasiPeminjaman: value
+            })
+            await getAllPeminjamanData()
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
+
+function formatDate(dateString) {
+    // Mengonversi string tanggalPeminjaman ke objek Date
+    const date = new Date(dateString);
+
+    // Mendapatkan tanggal, bulan, dan tahun
+    const tanggal = date.getDate();
+    const bulan = date.getMonth() + 1; // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+    const tahun = date.getFullYear();
+
+    // Format tanggal, bulan, dan tahun ke dalam string yang diinginkan
+    return `${tanggal < 10 ? '0' + tanggal : tanggal}/${bulan < 10 ? '0' + bulan : bulan}/${tahun}`;
+}
+
+const showModal = ref(false)
+const selectedIdPeminjaman = ref(null)
+
+function toggleModal(id) {
+  showModal.value = true;
+  selectedIdPeminjaman.value = id;
+};
 
 onMounted(() => {
     getAllPeminjamanData()
 })
-const showModal = ref(false)
+
 </script>
 
 <template>
@@ -104,11 +125,12 @@ const showModal = ref(false)
                                         <tbody>
                                             <template v-for="(peminjaman, index) in semuaPeminjaman">
                                                 <tr class="text-capitalize">
-                                                    <th scope="row">{{ index+1 }}</th>
+                                                    <th scope="row">{{ index + 1 }}</th>
                                                     <td>{{ peminjaman.id }}</td>
                                                     <td>{{ peminjaman.nama_employee }}</td>
                                                     <td>{{ peminjaman.nama_barang }}</td>
-                                                    <td>{{formatDate( peminjaman.tanggalPeminjaman) }} - {{ formatDate(peminjaman.tanggalPeminjaman) }}</td>
+                                                    <td>{{ formatDate(peminjaman.tanggal_mulai_peminjaman) }} - {{
+                                                        formatDate(peminjaman.tanggal_akhir_peminjaman) }}</td>
                                                     <template v-if="peminjaman.verifikasiPeminjaman == 'terima'">
                                                         <td class="text-success font-weight-bold">Diterima</td>
                                                     </template>
@@ -118,38 +140,63 @@ const showModal = ref(false)
                                                     <template v-else>
                                                         <td>
                                                             <div class="d-flex justify-content-center">
-                                                            <a href="#"
-                                                                class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
-                                                                Terima
-                                                            </a>
-                                                            <a href="#"
-                                                                class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
-                                                                Tolak
-                                                            </a>
-                                                        </div>
+                                                                <button
+                                                                    @click="updateVerifikasiPeminjaman(peminjaman.id, value = 'terima')"
+                                                                    type="button"
+                                                                    class="btn btn-sm btn-success font-weight-semibold mr-1 rounded-lg">
+                                                                    Terima
+                                                                </button>
+                                                                <button
+                                                                    @click="updateVerifikasiPeminjaman(peminjaman.id, value = 'tolak')"
+                                                                    type="button"
+                                                                    class="btn btn-sm btn-danger font-weight-semibold ml-1 rounded-lg">
+                                                                    Tolak
+                                                                </button>
+                                                            </div>
                                                         </td>
                                                     </template>
                                                     <td>
                                                         <template v-if="peminjaman.verifikasiPeminjaman == 'terima'">
-                                                            <div class="d-flex justify-content-center">
-                                                                <Button
-                                                                    class="btn btn-sm btn-primary font-weight-semibold rounded-lg"
-                                                                    id="show-modal" @click="showModal = true">
-                                                                    Pengembalian
-                                                                </button>
-                                                            </div>
+                                                            <template v-if="peminjaman.verifikasiPengembalian == 'sudah'">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <svg width="25" height="25" viewBox="0 0 20 20"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M19.2827 9.50738C19.2827 14.7582 15.1583 19.0148 10.0706 19.0148C4.98281 19.0148 0.858398 14.7582 0.858398 9.50738C0.858398 4.25659 4.98281 0 10.0706 0C15.1583 0 19.2827 4.25659 19.2827 9.50738ZM9.00499 14.5415L15.8398 7.4876C16.0719 7.24807 16.0719 6.85969 15.8398 6.62017L14.9993 5.75273C14.7672 5.51317 14.3909 5.51317 14.1588 5.75273L8.58472 11.5054L5.98233 8.81959C5.75024 8.58007 5.37392 8.58007 5.14179 8.81959L4.30129 9.68703C4.06921 9.92655 4.06921 10.3149 4.30129 10.5545L8.16446 14.5414C8.39658 14.781 8.77287 14.781 9.00499 14.5415Z"
+                                                                            fill="#30E22C" />
+                                                                    </svg>
+                                                                </div>
+                                                            </template>
+                                                            <template v-else>
+                                                                <div class="d-flex justify-content-center">
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-primary font-weight-semibold rounded-lg"
+                                                                        id="show-modal" @click="toggleModal(peminjaman.id)">
+                                                                        Pengembalian
+                                                                    </button>
+                                                                </div>
+                                                            </template>
                                                         </template>
                                                         <template v-else>
                                                             <div class="d-flex justify-content-center">
-                                                                <Button
+                                                                <button type="button"
                                                                     class="btn btn-sm btn-dark font-weight-semibold rounded-lg disabled"
-                                                                    id="show-modal" @click="showModal = true">
+                                                                    id="show-modal">
                                                                     Pengembalian
                                                                 </button>
                                                             </div>
                                                         </template>
                                                     </td>
                                                 </tr>
+                                                <div>
+                                                    <Teleport to="main">
+                                                        <ModalPeminjaman :show="showModal" :idDataPeminjaman="selectedIdPeminjaman" @close="showModal = false">
+                                                            <template #header>
+                                                                <h5 class="text-white text-center">Pengembalian Inventory</h5>
+                                                            </template>
+                                                        </ModalPeminjaman>
+                                                    </Teleport>
+                                                </div>
                                             </template>
                                         </tbody>
                                     </table>
@@ -168,40 +215,11 @@ const showModal = ref(false)
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </main>
 
             <FooterSection />
 
-        </div>
     </div>
-    <Teleport to="body">
-        <!-- use the modal component, pass in the prop -->
-        <modal :show="showModal" @close="showModal = false">
-            <template #header>
-                <h5 class="text-white text-center">Pengembalian Inventory</h5>
-            </template>
-            <template #body>
-                <form>
-                    <div class="mb-4">
-                        <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
-                            <option selected style="background-color: white;" value="">Pilih Kondisi</option>
-                            <option value="aman" style="background-color: white;">Aman</option>
-                            <option value="rusak" style="background-color: white;">Rusak</option>
-                            <option value="hilang" style="background-color: white;">Hilang</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <textarea type="text" class="form-control" id="nik" placeholder="Catatan"
-                            style="background-color: #D9D9D9; height: 120px;"></textarea>
-                    </div>
-                    <div class="d-flex justify-content-md-end justify-content-center">
-                        <a href="/" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
-                            style="background-color: #1284ED;" onmouseover="this.style.backgroundColor='#075095'"
-                            onmouseout="this.style.backgroundColor='#1284ED'">Simpan</a>
-                    </div>
-                </form>
-            </template>
-    </modal>
-</Teleport></template>
+</div></template>

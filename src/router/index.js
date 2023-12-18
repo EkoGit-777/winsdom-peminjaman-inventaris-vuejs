@@ -14,6 +14,7 @@ const router = createRouter({
       component: () => import('../views/RegistrationView.vue')    
     },
 
+
     //Router Untuk Admin
     {
       path: '/admin/',
@@ -29,11 +30,6 @@ const router = createRouter({
       path: '/admin/users',
       name: 'usersAdmin',
       component: () => import('../views/admin/UsersMenuView.vue')
-    },
-    {
-      path: '/admin/users/tambahuser',
-      name: 'tambahUserAdmin',
-      component: () => import('../views/admin/FormTambahUserView.vue')
     },
     {
       path: '/admin/users/edituser/:id',
@@ -63,8 +59,8 @@ const router = createRouter({
       component: () => import('../views/admin/InventoryDetailView.vue')
     },
     {
-      // path: '/admin/inventory/editinventory/:id',
-      path: '/admin/inventory/editinventory',
+      path: '/admin/inventory/editinventory/:id',
+      // path: '/admin/inventory/editinventory',
       name: 'editInventoryAdmin',
       component: () => import('../views/admin/FormEditInventoryView.vue')
     },
@@ -73,6 +69,7 @@ const router = createRouter({
       name: 'peminjamanAdmin',
       component: () => import('../views/admin/PeminjamanMenuView.vue')
     },
+
 
     //Router Untuk User
     {
