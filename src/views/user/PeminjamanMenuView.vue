@@ -48,20 +48,24 @@ import Navbar from '@/components/Navbar.vue';
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Kategori</th>
-                                                <th scope="col">Nama Inventory</th>
-                                                <th scope="col">Tanggal Mulai Peminjaman</th>
-                                                <th scope="col">Tanggal Akhir Peminjaman</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Date Start</th>
+                                                <th scope="col">Date End</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">In stock</th>
+                                                <th scope="col">Out stock</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
                                                 <td>Barang</td>
-                                                <td>Bor</td>
-                                                <td>20/12/2023</td>
-                                                <td>30/12/2023</td>
+                                                <td>Proyektor</td>
+                                                <td>20 September 2023</td>
+                                                <td>30 September 2023</td>
                                                 <td class="font-weight-semibold text-dark">Proses</td>
+                                                <td>20</td>
+                                                <td>10</td>
                                             </tr>
                                         </tbody>
                                     </table>

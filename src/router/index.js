@@ -96,6 +96,11 @@ const router = createRouter({
       path: '/inventory/form-peminjaman',
       name: 'form-peminjaman',
       component: () => import('../views/user/FormPeminjamanView.vue')
+    },
+    {
+      path: '/editprofile',
+      name: 'editProfileUser',
+      component: () => import('../views/user/FormEditProfileView.vue')
     }
 
   ]
