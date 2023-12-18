@@ -34,19 +34,15 @@ import Navbar from '@/components/Navbar.vue';
                                 </div>
                                 <form>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="nik" placeholder="320417280900015"
+                                        <input type="text" class="form-control" id="nama" placeholder="Nama"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="nama" placeholder="Sandi Prayogo"
+                                        <input type="text" class="form-control" id="alamat" placeholder="Alamat"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="alamat" placeholder="Sukamenak"
-                                            style="background-color: #D9D9D9;">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" id="no-telepon" placeholder="085603301502"
+                                        <input type="text" class="form-control" id="telpon" placeholder="No Telepon"
                                             style="background-color: #D9D9D9;">
                                     </div>
                                     <div class="mb-3">
@@ -57,13 +53,15 @@ import Navbar from '@/components/Navbar.vue';
                                             <option value="wanita" style="background-color: white;">wanita</option>
                                         </select>
                                     </div>
-                                    <div class="mb-4">
-                                        <select class="form-select" id="floatingSelect" style="background-color: #D9D9D9;">
-                                            <option selected style="background-color: white;" value="">Pilih Role</option>
-                                            <option value="pria" style="background-color: white;">Employee</option>
-                                            <option value="wanita" style="background-color: white;">Admin</option>
-                                        </select>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="umur" placeholder="Umur"
+                                            style="background-color: #D9D9D9;">
                                     </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="nik" placeholder="NIK"
+                                            style="background-color: #D9D9D9;">
+                                    </div>
+                                    
                                     <div class="d-flex justify-content-md-end justify-content-center">
                                         <a href="" class="btn px-3 text-white h-5 font-weight-semibold mr-2 rounded-pill"
                                             style="background-color: #1284ED;"

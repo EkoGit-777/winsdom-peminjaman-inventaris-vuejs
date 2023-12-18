@@ -3,6 +3,7 @@ import SidebarUser from '@/components/user/SidebarUser.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import HeaderBar from '@/components/user/HeaderBar.vue';
 import Navbar from '@/components/Navbar.vue';
+import Modal from '@/components/user/Modal.vue'
 import { ref } from 'vue'
 
 const showModal = ref(false)
@@ -59,7 +60,7 @@ const showModal = ref(false)
                                             <tr>
                                                 <th scope="col">No.</th>
                                                 <th scope="col">ID Peminjaman</th>
-                                                <th scope="col">Pinjam</th>
+                                                <th scope="col">Nama Inventory</th>
                                                 <th scope="col">Tanggal Peminjaman</th>
                                                 <th scope="col">Tanggal Pengembalian</th>
                                                 <th scope="col">Kondisi</th>
